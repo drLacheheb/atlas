@@ -4,7 +4,7 @@ import { useTranslations } from '../i18n/translations';
 import { Image } from 'astro:assets';
 import matricsBg from '../assets/matrics_bg.png';
 
-const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'fr' ? 'fr' : 'ar');
 const t = useTranslations(locale);
 ---
 <!-- Impact Metrics Section -->

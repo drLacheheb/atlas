@@ -4,7 +4,7 @@ import { useTranslations } from '../i18n/translations';
 import { getImage } from 'astro:assets';
 import heroBg from '../assets/hero_bg.png';
 
-const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'fr' ? 'fr' : 'ar');
 const t = useTranslations(locale);
 
 const titleSize = locale === 'ar' ? 'text-[clamp(1.875rem,3vw+1.5rem,5rem)]' : 'text-[clamp(1.875rem,2.5vw+1.25rem,3.75rem)]';

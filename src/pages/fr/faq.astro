@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { HelpCircle, ChevronDown } from '@lucide/astro';
+
+const faqs = [
+	{
+		q: "Quelles sont vos zones de couverture ?",
+		a: "Nous fournissons nos services électriques dans diverses régions entourant notre centre technique. Veuillez nous contacter directement pour confirmer la disponibilité du service dans votre zone spécifique."
+	},
+	{
+		q: "Fournissez-vous des services d'urgence 24 heures sur 24 ?",
+		a: "Oui, notre équipe de maintenance est disponible 24h/24 et 7j/7 pour traiter les pannes électriques d'urgence qui pourraient poser un risque pour la sécurité générale."
+	},
+	{
+		q: "Comment puis-je prendre rendez-vous pour une maintenance électrique ?",
+		a: "Vous pouvez facilement prendre rendez-vous en nous appelant sur le numéro disponible, en envoyant un e-mail ou en cliquant sur le bouton 'Réserver' pour remplir les détails. Notre équipe vous contactera pour confirmer la réservation."
+	},
+	{
+		q: "Vos techniciens sont-ils agréés et assurés ?",
+		a: "Absolument. Tous les ingénieurs et techniciens d'Atlas Électricité sont hautement qualifiés, officiellement agréés pour exercer la profession, et nous adhérons aux normes les plus strictes de sécurité au travail."
+	},
+	{
+		q: "Quelle est votre méthode de tarification des services ?",
+		a: "Nous adoptons un système de tarification transparent et compétitif. Une estimation initiale du coût est fournie en fonction de la nature de la panne ou des installations requises. Avant de commencer tout travail, nous partageons le prix final avec vous pour éviter tout coût caché."
+	}
+];
+---
+
+<Layout title="Questions Fréquemment Posées - FAQ - Atlas Électricité" description="Questions fréquemment posées sur les services d'électricité architecturale, résidentiels et commerciaux d'Atlas Électricité.">
+	<Header />
+	<main class="pt-32 pb-20 min-h-screen bg-on-background text-on-primary relative overflow-hidden">
+		<div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary via-on-background to-on-background"></div>
+		<div class="container mx-auto max-w-4xl px-gutter relative z-10 w-full">
+			<div class="text-center mb-12">
+				<div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full text-primary mb-4">
+					<HelpCircle class="w-8 h-8" />
+				</div>
+				<h1 class="font-display-lg text-3xl md:text-headline-lg text-on-primary mb-4">Questions Fréquemment Posées</h1>
+				<p class="font-body-lg text-surface-variant max-w-xl mx-auto opacity-90">Voici les réponses aux questions les plus fréquemment posées sur nos services techniques et électriques.</p>
+			</div>
+
+			<div class="space-y-4">
+				{faqs.map((faq) => (
+					<details class="group bg-surface/10 border border-surface/20 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-all duration-300 backdrop-blur-sm">
+						<summary class="flex justify-between items-center p-6 cursor-pointer select-none focus:outline-none">
+							<h3 class="font-headline-md text-headline-md text-on-primary font-semibold group-open:text-primary transition-colors text-start pe-4">
+								{faq.q}
+							</h3>
+							<div class="text-surface-variant group-open:text-primary transition-transform duration-300 group-open:rotate-180 flex-shrink-0">
+								<ChevronDown class="w-6 h-6" />
+							</div>
+						</summary>
+						<div class="px-6 pb-6 text-surface-variant opacity-90 font-body-md leading-relaxed border-t border-surface/20 pt-4 text-start">
+							<p>{faq.a}</p>
+						</div>
+					</details>
+				))}
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>

@@ -1,11 +1,10 @@
 ---
 import { useTranslations } from '../i18n/translations';
 
-const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'fr' ? 'fr' : 'ar');
 const t = useTranslations(locale);
-const isEn = locale === 'en';
-const baseLocalePath = isEn ? '/en' : '';
-const homeLink = isEn ? '/en/' : '/';
+const baseLocalePath = locale === 'ar' ? '' : `/${locale}`;
+const homeLink = locale === 'ar' ? '/' : `/${locale}/`;
 const servicesLink = `${baseLocalePath}/#services`;
 const benefitsLink = `${baseLocalePath}/#benefits`;
 const metricsLink = `${baseLocalePath}/#metrics`;

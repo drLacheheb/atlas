@@ -7,13 +7,15 @@ interface Props {
 	description?: string;
 }
 
-const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'fr' ? 'fr' : 'ar');
 const dir = locale === 'ar' ? 'rtl' : 'ltr';
 const t = useTranslations(locale);
 
 const defaultTitle = locale === 'ar'
 	? "أطلس للكهرباء - الخبرة الفنية التي تستحقها مشاريعك"
-	: "Atlas Electricity - The Technical Expertise Your Projects Deserve";
+	: (locale === 'fr'
+		? "Atlas Électricité - L'Expertise Technique que Vos Projets Méritent"
+		: "Atlas Electricity - The Technical Expertise Your Projects Deserve");
 const defaultDescription = t('hero.desc');
 
 const { 
@@ -25,7 +27,7 @@ const {
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Electrician",
-  "name": locale === 'ar' ? "أطلس للكهرباء" : "Atlas Electricity",
+  "name": locale === 'ar' ? "أطلس للكهرباء" : (locale === 'fr' ? "Atlas Électricité" : "Atlas Electricity"),
   "description": description,
   "url": Astro.url.href,
   "logo": new URL('/favicon.svg', Astro.url.href).toString(),
@@ -75,8 +77,8 @@ const schemaData = {
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={new URL('/og-image.png', Astro.url.href).toString()} />
-		<meta property="og:locale" content={locale === 'ar' ? 'ar_DZ' : 'en_US'} />
-		<meta property="og:site_name" content={locale === 'ar' ? 'أطلس للكهرباء' : 'Atlas Electricity'} />
+		<meta property="og:locale" content={locale === 'ar' ? 'ar_DZ' : (locale === 'fr' ? 'fr_FR' : 'en_US')} />
+		<meta property="og:site_name" content={locale === 'ar' ? 'أطلس للكهرباء' : (locale === 'fr' ? 'Atlas Électricité' : 'Atlas Electricity')} />
 
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />

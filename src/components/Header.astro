@@ -2,21 +2,31 @@
 import { Menu, X } from '@lucide/astro';
 import { useTranslations } from '../i18n/translations';
 
-const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'fr' ? 'fr' : 'ar');
 const t = useTranslations(locale);
 
-const isEn = locale === 'en';
-const baseLocalePath = isEn ? '/en' : '';
-const homeLink = isEn ? '/en/' : '/';
+const baseLocalePath = locale === 'ar' ? '' : `/${locale}`;
+const homeLink = locale === 'ar' ? '/' : `/${locale}/`;
 const servicesLink = `${baseLocalePath}/#services`;
 const benefitsLink = `${baseLocalePath}/#benefits`;
 const metricsLink = `${baseLocalePath}/#metrics`;
 const contactLink = `${baseLocalePath}/#contact`;
 
+// Dynamic subpath language switching logic
 const currentPath = Astro.url.pathname;
-const switchLocalePath = isEn
-  ? (currentPath.replace(/^\/en/, '') || '/')
-  : (currentPath === '/' ? '/en/' : `/en${currentPath}`);
+let cleanPath = currentPath;
+if (cleanPath.startsWith('/en')) {
+  cleanPath = cleanPath.substring(3);
+} else if (cleanPath.startsWith('/fr')) {
+  cleanPath = cleanPath.substring(3);
+}
+if (!cleanPath.startsWith('/')) {
+  cleanPath = '/' + cleanPath;
+}
+
+const arLink = cleanPath === '/' ? '/' : cleanPath;
+const enLink = cleanPath === '/' ? '/en/' : `/en${cleanPath}`;
+const frLink = cleanPath === '/' ? '/fr/' : `/fr${cleanPath}`;
 ---
 <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-transparent border-b border-transparent transition-all duration-300 ease-in-out">
   <div class="flex items-center gap-4">
@@ -34,9 +44,14 @@ const switchLocalePath = isEn
   </nav>
 
   <div class="hidden md:flex items-center gap-6">
-    <a href={switchLocalePath} class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-bold text-label-bold flex items-center gap-1">
-      {isEn ? 'العربية' : 'English'}
-    </a>
+    <!-- 3-Language Desktop Switcher -->
+    <div class="flex items-center gap-3 text-sm border-e border-secondary/20 pe-6">
+      <a href={arLink} class={`hover:text-primary font-label-bold transition-colors ${locale === 'ar' ? 'text-primary font-bold' : 'text-secondary dark:text-secondary-fixed-dim'}`}>العربية</a>
+      <span class="text-secondary/20">|</span>
+      <a href={enLink} class={`hover:text-primary font-label-bold transition-colors ${locale === 'en' ? 'text-primary font-bold' : 'text-secondary dark:text-secondary-fixed-dim'}`}>English</a>
+      <span class="text-secondary/20">|</span>
+      <a href={frLink} class={`hover:text-primary font-label-bold transition-colors ${locale === 'fr' ? 'text-primary font-bold' : 'text-secondary dark:text-secondary-fixed-dim'}`}>Français</a>
+    </div>
     <a class="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-bold text-label-bold hover:-translate-y-0.5 transition-transform" href={contactLink}>
       {t('nav.book')}
     </a>
@@ -55,9 +70,16 @@ const switchLocalePath = isEn
     <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={benefitsLink}>{t('nav.benefits')}</a>
     <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={metricsLink}>{t('nav.metrics')}</a>
     <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={contactLink}>{t('nav.contact')}</a>
-    <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={switchLocalePath}>
-      {isEn ? 'العربية' : 'English'}
-    </a>
+    
+    <!-- 3-Language Mobile Switcher Row -->
+    <div class="flex items-center justify-center gap-4 py-3 border-b border-secondary/5 text-sm">
+      <a href={arLink} class={`hover:text-primary font-label-bold transition-colors ${locale === 'ar' ? 'text-primary font-bold' : 'text-secondary'}`}>العربية</a>
+      <span class="text-secondary/20">|</span>
+      <a href={enLink} class={`hover:text-primary font-label-bold transition-colors ${locale === 'en' ? 'text-primary font-bold' : 'text-secondary'}`}>English</a>
+      <span class="text-secondary/20">|</span>
+      <a href={frLink} class={`hover:text-primary font-label-bold transition-colors ${locale === 'fr' ? 'text-primary font-bold' : 'text-secondary'}`}>Français</a>
+    </div>
+    
     <a class="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-bold text-label-bold mt-2" href={contactLink}>
       {t('nav.book')}
     </a>

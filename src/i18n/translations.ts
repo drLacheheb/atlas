@@ -1,6 +1,7 @@
 export const languages = {
   ar: 'العربية',
-  en: 'English'
+  en: 'English',
+  fr: 'Français'
 };
 
 export const defaultLang = 'ar';
@@ -54,7 +55,7 @@ export const ui = {
 
     // Contact
     'contact.title': 'تواصل معنا!',
-    'contact.desc': 'لا تتردد في التواصل معنا! نحن هنا للمساعدة',
+    'contact.desc': 'لا تتردد في تواصل معنا! نحن هنا للمساعدة',
     'contact.social.label': 'Social Media',
     'contact.social.link': 'زيارة الملف الشخصي',
     'contact.email.label': 'Email',
@@ -145,10 +146,80 @@ export const ui = {
     'footer.legal.item2': 'Terms of Service',
     'footer.legal.item3': 'FAQ',
     'footer.copyright': '© 2024 Atlas Electricity. All rights reserved.'
+  },
+  fr: {
+    // Header
+    'nav.home': 'Accueil',
+    'nav.services': 'Services',
+    'nav.benefits': 'Avantages',
+    'nav.metrics': 'Statistiques',
+    'nav.contact': 'Contact',
+    'nav.book': 'Réserver',
+
+    // Hero
+    'hero.badge': 'Services Électriques Professionnels',
+    'hero.title1': "L'Expertise Technique que",
+    'hero.title2': 'Vos Projets Méritent',
+    'hero.desc': "Chez Atlas Électricité, notre mission est de fournir des services électriques exceptionnels qui répondent aux besoins des secteurs résidentiel et commercial. Nous privilégions avant tout la qualité, la fiabilité et la satisfaction client.",
+    'hero.cta': 'Réserver Maintenant',
+
+    // Benefits
+    'benefits.title': 'Avantages Clés',
+    'benefits.desc': "Découvrez les avantages d'un partenariat avec Atlas Électricité. Nous combinons expertise technique, engagement qualité, efficacité et satisfaction client.",
+    'benefits.card1.title': 'Tarifs Compétitifs',
+    'benefits.card1.desc': 'Nous offrons des tarifs compétitifs sans compromettre la qualité, rendant nos services accessibles aux clients résidentiels et commerciaux.',
+    'benefits.card2.title': 'Réponse Rapide',
+    'benefits.card2.desc': "Bénéficiez d'une réponse rapide dès que vous nous contactez, garantissant que vos problèmes soient résolus rapidement et efficacement.",
+    'benefits.card3.title': 'Fiable & Professionnel',
+    'benefits.card3.desc': "Notre équipe fournit un service fiable et professionnel pour s'assurer que vos besoins électriques soient comblés avec efficacité et expertise.",
+
+    // Metrics
+    'metrics.title': 'Statistiques Clés',
+    'metrics.desc': "Des chiffres qui reflètent notre engagement envers l'excellence et la confiance de nos clients. Nous sommes fiers de notre historique de services électriques fiables et exceptionnels.",
+    'metrics.stat1.val': '300+',
+    'metrics.stat1.label': 'Clients Satisfaits',
+    'metrics.stat2.val': '24/7',
+    'metrics.stat2.label': 'Disponibilité du Service',
+    'metrics.stat3.val': '99%',
+    'metrics.stat3.label': 'Satisfaction Client',
+
+    // Services
+    'services.title': 'Nos Services',
+    'services.desc': 'Chez Atlas Électricité Architecturale, nous nous engageons à alimenter votre vie avec excellence, en fournissant des solutions électriques de premier ordre en lesquelles vous pouvez avoir confiance.',
+    'services.card1.title': 'Installations',
+    'services.card1.desc': 'Installations électriques complètes pour maisons et entreprises, garantissant la sécurité et la conformité aux dernières réglementations. Laissez-nous vous alimenter efficacement.',
+    'services.card2.title': 'Réparations',
+    'services.card2.desc': "Nous offrons des services de réparation rapides et efficaces pour résoudre tout problème électrique, minimisant les temps d'arrêt et assurant la sécurité de votre environnement.",
+    'services.card3.title': 'Consultations',
+    'services.card3.desc': "Consultations d'experts pour comprendre vos besoins électriques et fournir des solutions sur mesure, garantissant que vos projets soient traités avec soin et expertise.",
+
+    // Contact
+    'contact.title': 'Contactez-nous !',
+    'contact.desc': "N'hésitez pas à nous contacter ! Nous sommes là pour vous aider.",
+    'contact.social.label': 'Réseaux Sociaux',
+    'contact.social.link': 'Voir le Profil',
+    'contact.email.label': 'E-mail',
+    'contact.email.link': 'Envoyer un E-mail',
+    'contact.phone.label': 'Téléphone',
+    'contact.phone.link': 'Appelez-nous Maintenant',
+
+    // Footer
+    'footer.desc': "L'expertise technique au service de vos projets électriques.",
+    'footer.services.title': 'Services',
+    'footer.services.item1': 'Installations',
+    'footer.services.item2': 'Réparations',
+    'footer.services.item3': 'Consultations',
+    'footer.services.item4': 'Maintenance',
+    'footer.links.title': 'Liens Rapides',
+    'footer.legal.title': 'Mentions Légales',
+    'footer.legal.item1': 'Politique de Confidentialité',
+    'footer.legal.item2': "Conditions d'Utilisation",
+    'footer.legal.item3': 'FAQ',
+    'footer.copyright': '© 2024 Atlas Électricité. Tous droits réservés.'
   }
 } as const;
 
-export function useTranslations(lang: 'ar' | 'en') {
+export function useTranslations(lang: 'ar' | 'en' | 'fr') {
   return function t(key: keyof typeof ui[typeof defaultLang]) {
     return ui[lang][key] || ui[defaultLang][key];
   }

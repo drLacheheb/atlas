@@ -4,7 +4,7 @@ import { useTranslations } from '../i18n/translations';
 import { getImage } from 'astro:assets';
 import ourServicesBg from '../assets/our_services_bg.png';
 
-const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'fr' ? 'fr' : 'ar');
 const t = useTranslations(locale);
 
 // Optimize background image
