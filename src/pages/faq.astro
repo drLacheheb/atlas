@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { HelpCircle, ChevronDown } from '@lucide/astro';
+
+const faqs = [
+	{
+		q: "ما هي مناطق التغطية لخدماتكم؟",
+		a: "نحن نقدم خدماتنا الكهربائية في مختلف المناطق المحيطة بمركزنا الفني. يرجى الاتصال بنا مباشرة لتأكيد توفر الخدمة في منطقتك المحددة."
+	},
+	{
+		q: "هل تقدمون خدمات الطوارئ على مدار 24 ساعة؟",
+		a: "نعم، فريق الصيانة لدينا متاح على مدار الساعة (24/7) للتعامل مع الأعطال الكهربائية الطارئة التي قد تشكل خطراً على السلامة العامة."
+	},
+	{
+		q: "كيف يمكنني حجز موعد لصيانة كهربائية؟",
+		a: "يمكنك حجز موعد بسهولة عبر الاتصال بنا هاتفياً على الرقم المتاح، أو إرسال بريد إلكتروني، أو بالضغط على زر 'Book Now' لملء التفاصيل وسيقوم فريقنا بالتواصل معك لتأكيد الحجز."
+	},
+	{
+		q: "هل الفنيون لديكم مرخصون ومؤمنون؟",
+		a: "بكل تأكيد. جميع المهندسين والفنيين في شركة أطلس للكهرباء مؤهلون تأهيلاً عالياً، ومرخصون رسمياً لممارسة المهنة، ونلتزم بأعلى معايير السلامة المهنية."
+	},
+	{
+		q: "ما هي طريقة تسعير الخدمات لديكم؟",
+		a: "نحن نعتمد نظام تسعير شفاف وتنافسي. يتم تقديم تقدير أولي للتكلفة بناءً على طبيعة العطل أو التركيبات المطلوبة، وقبل البدء في أي عمل نقوم بمشاركة السعر النهائي معك لتجنب أي تكاليف خفية."
+	}
+];
+---
+
+<Layout title="الأسئلة الشائعة - FAQ - Atlas Électricité" description="الأسئلة الشائعة حول خدمات أطلس للكهرباء المعمارية والصيانة المنزلية والتجارية.">
+	<Header />
+	<main class="pt-32 pb-20 min-h-screen bg-on-background text-on-primary relative overflow-hidden">
+		<div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary via-on-background to-on-background"></div>
+		<div class="container mx-auto max-w-4xl px-gutter relative z-10 w-full">
+			<div class="text-center mb-12">
+				<div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full text-primary mb-4">
+					<HelpCircle class="w-8 h-8" />
+				</div>
+				<h1 class="font-display-lg text-3xl md:text-headline-lg text-on-primary mb-4">الأسئلة الشائعة</h1>
+				<p class="font-body-lg text-surface-variant max-w-xl mx-auto opacity-90">إليك إجابات على أكثر الأسئلة تكراراً حول خدماتنا الفنية والكهربائية.</p>
+			</div>
+
+			<div class="space-y-4">
+				{faqs.map((faq) => (
+					<details class="group bg-surface/10 border border-surface/20 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-all duration-300 backdrop-blur-sm">
+						<summary class="flex justify-between items-center p-6 cursor-pointer select-none focus:outline-none">
+							<h3 class="font-headline-md text-headline-md text-on-primary font-semibold group-open:text-primary transition-colors text-start pe-4">
+								{faq.q}
+							</h3>
+							<div class="text-surface-variant group-open:text-primary transition-transform duration-300 group-open:rotate-180 flex-shrink-0">
+								<ChevronDown class="w-6 h-6" />
+							</div>
+						</summary>
+						<div class="px-6 pb-6 text-surface-variant opacity-90 font-body-md leading-relaxed border-t border-surface/20 pt-4 text-start">
+							<p>{faq.a}</p>
+						</div>
+					</details>
+				))}
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>

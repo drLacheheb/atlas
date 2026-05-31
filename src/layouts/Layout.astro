@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+import { useTranslations } from '../i18n/translations';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const dir = locale === 'ar' ? 'rtl' : 'ltr';
+const t = useTranslations(locale);
+
+const defaultTitle = locale === 'ar'
+	? "أطلس للكهرباء - الخبرة الفنية التي تستحقها مشاريعك"
+	: "Atlas Electricity - The Technical Expertise Your Projects Deserve";
+const defaultDescription = t('hero.desc');
+
+const { 
+	title = defaultTitle,
+	description = defaultDescription
+} = Astro.props;
+
+// Structured Schema Markup
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Electrician",
+  "name": locale === 'ar' ? "أطلس للكهرباء" : "Atlas Electricity",
+  "description": description,
+  "url": Astro.url.href,
+  "logo": new URL('/favicon.svg', Astro.url.href).toString(),
+  "image": new URL('/og-image.png', Astro.url.href).toString(),
+  "telephone": "+213666921513",
+  "email": "achraf.berrah.dz@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "DZ",
+    "addressRegion": "Algiers"
+  },
+  "priceRange": "$$",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  }
+};
+---
+
+<!DOCTYPE html>
+<html dir={dir} lang={locale}>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="Atlas" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		
+		<!-- OpenGraph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url.href} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL('/og-image.png', Astro.url.href).toString()} />
+		<meta property="og:locale" content={locale === 'ar' ? 'ar_DZ' : 'en_US'} />
+		<meta property="og:site_name" content={locale === 'ar' ? 'أطلس للكهرباء' : 'Atlas Electricity'} />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={Astro.url.href} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL('/og-image.png', Astro.url.href).toString()} />
+
+		<link rel="canonical" href={Astro.url.href} />
+		<title>{title}</title>
+
+		<!-- Local Business Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+	</head>
+	<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+		<slot />
+
+		<!-- Intersection Observer Reveal Animations -->
+		<script>
+			const setupRevealAnimations = () => {
+				const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+				
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('active');
+							observer.unobserve(entry.target); // Trigger only once
+						}
+					});
+				}, {
+					root: null,
+					rootMargin: '0px 0px -8% 0px', // Trigger when 8% enters the viewport
+					threshold: 0.02
+				});
+
+				reveals.forEach(el => observer.observe(el));
+			};
+
+			// Run on initial load
+			setupRevealAnimations();
+
+			// Listen for Astro view transitions page load
+			document.addEventListener('astro:page-load', setupRevealAnimations);
+		</script>
+	</body>
+</html>

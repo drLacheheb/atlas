@@ -1,0 +1,61 @@
+---
+import { Coins, Timer, ShieldCheck } from '@lucide/astro';
+import { useTranslations } from '../i18n/translations';
+import { getImage } from 'astro:assets';
+import keyBenefitsBg from '../assets/key_benefits_bg.png';
+
+const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const t = useTranslations(locale);
+
+// Optimize background image
+const optimizedBg = await getImage({ src: keyBenefitsBg, format: 'webp', width: 1920 });
+---
+<!-- Core Benefits Section -->
+<section class="min-h-screen flex items-center py-20 bg-surface relative overflow-hidden bg-grid-pattern" id="benefits">
+  <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--color-surface-container-high)_0%,_transparent_75%)] opacity-50 pointer-events-none"></div>
+  <div class="absolute inset-0 z-0 opacity-15 bg-cover bg-center bg-no-repeat pointer-events-none" style={`background-image: url('${optimizedBg.src}');`}></div>
+  <div class="container mx-auto max-w-container-max px-gutter relative z-10">
+    <div class="mb-16 text-center max-w-3xl mx-auto reveal">
+      <h2 class="font-headline-lg text-3xl md:text-headline-lg mb-4">{t('benefits.title')}</h2>
+      <div class="w-24 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
+      <p class="font-body-lg text-body-lg text-secondary">
+        {t('benefits.desc')}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Benefit 1 -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-container-highest hover:shadow-[0_12px_30px_rgba(186,0,19,0.06)] hover:border-primary/20 hover:-translate-y-1.5 transition-all duration-300 group reveal delay-100">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-300 group-hover:scale-110">
+          <Coins class="w-6 h-6 text-primary group-hover:text-on-primary transition-colors" />
+        </div>
+        <h3 class="font-headline-md text-headline-md mb-4">{t('benefits.card1.title')}</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          {t('benefits.card1.desc')}
+        </p>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-container-highest hover:shadow-[0_12px_30px_rgba(186,0,19,0.06)] hover:border-primary/20 hover:-translate-y-1.5 transition-all duration-300 group reveal delay-200">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-300 group-hover:scale-110">
+          <Timer class="w-6 h-6 text-primary group-hover:text-on-primary transition-colors" />
+        </div>
+        <h3 class="font-headline-md text-headline-md mb-4">{t('benefits.card2.title')}</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          {t('benefits.card2.desc')}
+        </p>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-container-highest hover:shadow-[0_12px_30px_rgba(186,0,19,0.06)] hover:border-primary/20 hover:-translate-y-1.5 transition-all duration-300 group reveal delay-300">
+        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-300 group-hover:scale-110">
+          <ShieldCheck class="w-6 h-6 text-primary group-hover:text-on-primary transition-colors" />
+        </div>
+        <h3 class="font-headline-md text-headline-md mb-4">{t('benefits.card3.title')}</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          {t('benefits.card3.desc')}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

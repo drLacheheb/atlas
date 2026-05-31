@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { HelpCircle, ChevronDown } from '@lucide/astro';
+
+const faqs = [
+	{
+		q: "What are your service coverage areas?",
+		a: "We provide our electrical services in various regions surrounding our technical center. Please contact us directly to confirm service availability in your specific area."
+	},
+	{
+		q: "Do you provide 24-hour emergency services?",
+		a: "Yes, our maintenance team is available 24/7 to handle emergency electrical faults that may pose a safety hazard."
+	},
+	{
+		q: "How can I book an appointment for electrical maintenance?",
+		a: "You can easily book an appointment by calling us on the available number, sending an email, or clicking the 'Book Now' button to fill in the details. Our team will contact you to confirm the booking."
+	},
+	{
+		q: "Are your technicians licensed and insured?",
+		a: "Absolutely. All engineers and technicians at Atlas Electricity are highly qualified, officially licensed to practice the profession, and we adhere to the highest standards of occupational safety."
+	},
+	{
+		q: "What is your service pricing method?",
+		a: "We adopt a transparent and competitive pricing system. An initial cost estimate is provided based on the nature of the fault or installations required. Before starting any work, we share the final price with you to avoid any hidden costs."
+	}
+];
+---
+
+<Layout title="Frequently Asked Questions - FAQ - Atlas Electricity" description="Frequently asked questions about Atlas architectural electricity services, residential, and commercial maintenance.">
+	<Header />
+	<main class="pt-32 pb-20 min-h-screen bg-on-background text-on-primary relative overflow-hidden">
+		<div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary via-on-background to-on-background"></div>
+		<div class="container mx-auto max-w-4xl px-gutter relative z-10 w-full">
+			<div class="text-center mb-12">
+				<div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full text-primary mb-4">
+					<HelpCircle class="w-8 h-8" />
+				</div>
+				<h1 class="font-display-lg text-3xl md:text-headline-lg text-on-primary mb-4">Frequently Asked Questions</h1>
+				<p class="font-body-lg text-surface-variant max-w-xl mx-auto opacity-90">Here are answers to the most frequently asked questions about our technical and electrical services.</p>
+			</div>
+
+			<div class="space-y-4">
+				{faqs.map((faq) => (
+					<details class="group bg-surface/10 border border-surface/20 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden transition-all duration-300 backdrop-blur-sm">
+						<summary class="flex justify-between items-center p-6 cursor-pointer select-none focus:outline-none">
+							<h3 class="font-headline-md text-headline-md text-on-primary font-semibold group-open:text-primary transition-colors text-start pe-4">
+								{faq.q}
+							</h3>
+							<div class="text-surface-variant group-open:text-primary transition-transform duration-300 group-open:rotate-180 flex-shrink-0">
+								<ChevronDown class="w-6 h-6" />
+							</div>
+						</summary>
+						<div class="px-6 pb-6 text-surface-variant opacity-90 font-body-md leading-relaxed border-t border-surface/20 pt-4 text-start">
+							<p>{faq.a}</p>
+						</div>
+					</details>
+				))}
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>

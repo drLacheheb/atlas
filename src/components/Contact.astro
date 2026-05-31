@@ -1,0 +1,64 @@
+---
+import { Share2, ExternalLink, Mail, Send, Phone, PhoneCall } from '@lucide/astro';
+import { useTranslations } from '../i18n/translations';
+import { getImage } from 'astro:assets';
+import connectWithUsBg from '../assets/connect_with_us_bg.png';
+
+const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const t = useTranslations(locale);
+
+// Optimize background image
+const optimizedBg = await getImage({ src: connectWithUsBg, format: 'webp', width: 1920 });
+---
+<!-- Contact Section -->
+<section class="text-on-surface bg-on-background relative overflow-hidden min-h-screen flex items-center py-20" id="contact">
+  <div class="absolute inset-0 z-0 opacity-15 bg-cover bg-center bg-no-repeat pointer-events-none" style={`background-image: url('${optimizedBg.src}');`}></div>
+  <div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary via-on-background to-on-background"></div>
+  <div class="container mx-auto max-w-container-max px-gutter relative z-10 w-full">
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-headline-lg text-3xl md:text-headline-lg mb-4 text-on-primary">{t('contact.title')}</h2>
+      <p class="font-body-lg text-body-lg text-surface-variant opacity-90">{t('contact.desc')}</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Social Card -->
+      <div class="bg-surface/10 text-on-primary p-6 lg:p-8 rounded-xl border border-surface/20 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group backdrop-blur-sm reveal delay-100">
+        <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
+          <Share2 class="w-6 h-6 text-primary group-hover:text-on-primary transition-colors" />
+        </div>
+        <div class="font-label-bold text-label-bold text-surface-variant mb-2 uppercase tracking-wider">{t('contact.social.label')}</div>
+        <div class="font-headline-md text-base lg:text-lg xl:text-headline-md mb-4 text-on-primary" dir="ltr">@Achraf_Berrah</div>
+        <a class="text-primary font-bold hover:underline flex items-center gap-1" href="#">
+          {t('contact.social.link')}
+          <ExternalLink class="w-4 h-4" />
+        </a>
+      </div>
+
+      <!-- Email Card -->
+      <div class="bg-surface/10 text-on-primary p-6 lg:p-8 rounded-xl border border-surface/20 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group backdrop-blur-sm reveal delay-200">
+        <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
+          <Mail class="w-6 h-6 text-primary group-hover:text-on-primary transition-colors" />
+        </div>
+        <div class="font-label-bold text-label-bold text-surface-variant mb-2 uppercase tracking-wider">{t('contact.email.label')}</div>
+        <div class="font-headline-md text-xs lg:text-sm xl:text-base 2xl:text-lg mb-4 text-on-primary break-words">achraf.berrah.dz@gmail.com</div>
+        <a class="text-primary font-bold hover:underline flex items-center gap-1" href="mailto:achraf.berrah.dz@gmail.com">
+          {t('contact.email.link')}
+          <Send class="w-4 h-4" />
+        </a>
+      </div>
+
+      <!-- Phone Card -->
+      <div class="bg-surface/10 text-on-primary p-6 lg:p-8 rounded-xl border border-surface/20 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group backdrop-blur-sm reveal delay-300">
+        <div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
+          <Phone class="w-6 h-6 text-primary group-hover:text-on-primary transition-colors" />
+        </div>
+        <div class="font-label-bold text-label-bold text-surface-variant mb-2 uppercase tracking-wider">{t('contact.phone.label')}</div>
+        <div class="font-headline-md text-base lg:text-lg xl:text-headline-md mb-4 text-on-primary" dir="ltr">+213666921513</div>
+        <a class="text-primary font-bold hover:underline flex items-center gap-1" href="tel:+213666921513">
+          {t('contact.phone.link')}
+          <PhoneCall class="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

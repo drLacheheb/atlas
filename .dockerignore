@@ -1,0 +1,9 @@
+node_modules
+.astro
+dist
+.git
+.npmrc
+generate_icons.js
+generate_og.js
+.gemini
+*.log

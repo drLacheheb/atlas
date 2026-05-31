@@ -1,0 +1,64 @@
+---
+import { Wrench, Hammer, Headphones } from '@lucide/astro';
+import { useTranslations } from '../i18n/translations';
+import { getImage } from 'astro:assets';
+import ourServicesBg from '../assets/our_services_bg.png';
+
+const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const t = useTranslations(locale);
+
+// Optimize background image
+const optimizedBg = await getImage({ src: ourServicesBg, format: 'webp', width: 1920 });
+---
+<!-- Services Grid -->
+<section class="min-h-screen flex items-center py-20 bg-surface-container-low relative overflow-hidden bg-grid-pattern" id="services">
+  <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--color-surface-container-highest)_0%,_transparent_75%)] opacity-40 pointer-events-none"></div>
+  <div class="absolute inset-0 z-0 opacity-15 bg-cover bg-center bg-no-repeat pointer-events-none" style={`background-image: url('${optimizedBg.src}');`}></div>
+  <div class="container mx-auto max-w-container-max px-gutter relative z-10">
+    <div class="mb-16 text-center max-w-3xl mx-auto reveal">
+      <h2 class="font-headline-lg text-3xl md:text-headline-lg mb-4">{t('services.title')}</h2>
+      <div class="w-24 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
+      <p class="font-body-lg text-body-lg text-secondary">
+        {t('services.desc')}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Service 1 -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-container-highest hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(186,0,19,0.06)] hover:border-primary/30 transition-all duration-300 flex flex-col items-center text-center group reveal delay-100">
+        <div class="w-24 h-24 mb-6 rounded-full border-2 border-primary/20 flex items-center justify-center bg-surface relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:border-primary/40">
+          <Wrench class="w-10 h-10 text-primary relative z-10 transition-transform duration-300 group-hover:scale-110" />
+          <div class="absolute bottom-0 w-full h-1/3 bg-primary/5 transition-all duration-300 group-hover:h-full group-hover:bg-primary/5"></div>
+        </div>
+        <h3 class="font-headline-md text-headline-md mb-4">{t('services.card1.title')}</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          {t('services.card1.desc')}
+        </p>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-container-highest hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(186,0,19,0.06)] hover:border-primary/30 transition-all duration-300 flex flex-col items-center text-center group reveal delay-200">
+        <div class="w-24 h-24 mb-6 rounded-full border-2 border-primary/20 flex items-center justify-center bg-surface relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:border-primary/40">
+          <Hammer class="w-10 h-10 text-primary relative z-10 transition-transform duration-300 group-hover:scale-110" />
+          <div class="absolute bottom-0 w-full h-1/3 bg-primary/5 transition-all duration-300 group-hover:h-full group-hover:bg-primary/5"></div>
+        </div>
+        <h3 class="font-headline-md text-headline-md mb-4">{t('services.card2.title')}</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          {t('services.card2.desc')}
+        </p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-container-highest hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(186,0,19,0.06)] hover:border-primary/30 transition-all duration-300 flex flex-col items-center text-center group reveal delay-300">
+        <div class="w-24 h-24 mb-6 rounded-full border-2 border-primary/20 flex items-center justify-center bg-surface relative overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:border-primary/40">
+          <Headphones class="w-10 h-10 text-primary relative z-10 transition-transform duration-300 group-hover:scale-110" />
+          <div class="absolute bottom-0 w-full h-1/3 bg-primary/5 transition-all duration-300 group-hover:h-full group-hover:bg-primary/5"></div>
+        </div>
+        <h3 class="font-headline-md text-headline-md mb-4">{t('services.card3.title')}</h3>
+        <p class="font-body-md text-body-md text-secondary">
+          {t('services.card3.desc')}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

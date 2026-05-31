@@ -1,0 +1,143 @@
+---
+import { Menu, X } from '@lucide/astro';
+import { useTranslations } from '../i18n/translations';
+
+const locale = Astro.currentLocale === 'en' ? 'en' : 'ar';
+const t = useTranslations(locale);
+
+const isEn = locale === 'en';
+const baseLocalePath = isEn ? '/en' : '';
+const homeLink = isEn ? '/en/' : '/';
+const servicesLink = `${baseLocalePath}/#services`;
+const benefitsLink = `${baseLocalePath}/#benefits`;
+const metricsLink = `${baseLocalePath}/#metrics`;
+const contactLink = `${baseLocalePath}/#contact`;
+
+const currentPath = Astro.url.pathname;
+const switchLocalePath = isEn
+  ? (currentPath.replace(/^\/en/, '') || '/')
+  : (currentPath === '/' ? '/en/' : `/en${currentPath}`);
+---
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-transparent border-b border-transparent transition-all duration-300 ease-in-out">
+  <div class="flex items-center gap-4">
+    <a href={homeLink} class="flex items-center gap-4">
+      <span class="font-headline-lg text-2xl md:text-3xl font-bold text-primary uppercase tracking-wider header-brand">Atlas</span>
+    </a>
+  </div>
+  
+  <nav class="hidden md:flex items-center gap-8">
+    <a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-bold text-label-bold" href={homeLink}>{t('nav.home')}</a>
+    <a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-bold text-label-bold" href={servicesLink}>{t('nav.services')}</a>
+    <a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-bold text-label-bold" href={benefitsLink}>{t('nav.benefits')}</a>
+    <a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-bold text-label-bold" href={metricsLink}>{t('nav.metrics')}</a>
+    <a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-bold text-label-bold" href={contactLink}>{t('nav.contact')}</a>
+  </nav>
+
+  <div class="hidden md:flex items-center gap-6">
+    <a href={switchLocalePath} class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-bold text-label-bold flex items-center gap-1">
+      {isEn ? 'العربية' : 'English'}
+    </a>
+    <a class="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-bold text-label-bold hover:-translate-y-0.5 transition-transform" href={contactLink}>
+      {t('nav.book')}
+    </a>
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none flex items-center justify-center transition-colors duration-300" aria-label="Toggle Menu">
+    <Menu class="w-8 h-8 menu-icon" />
+    <X class="w-8 h-8 close-icon hidden" />
+  </button>
+
+  <!-- Mobile Nav Tray -->
+  <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-surface/95 backdrop-blur-md border-b border-secondary/10 px-gutter py-6 flex flex-col gap-4 md:hidden">
+    <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={homeLink}>{t('nav.home')}</a>
+    <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={servicesLink}>{t('nav.services')}</a>
+    <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={benefitsLink}>{t('nav.benefits')}</a>
+    <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={metricsLink}>{t('nav.metrics')}</a>
+    <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={contactLink}>{t('nav.contact')}</a>
+    <a class="text-secondary hover:text-primary transition-colors font-label-bold text-label-bold py-2 border-b border-secondary/5" href={switchLocalePath}>
+      {isEn ? 'العربية' : 'English'}
+    </a>
+    <a class="inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-bold text-label-bold mt-2" href={contactLink}>
+      {t('nav.book')}
+    </a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const header = document.querySelector('header');
+
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+
+  const updateHeaderBg = () => {
+    const isScrolled = window.scrollY > 50;
+    const isMenuOpen = menu && !menu.classList.contains('hidden');
+    const isActive = isScrolled || isMenuOpen;
+
+    if (header) {
+      if (isActive) {
+        header.classList.remove('bg-transparent', 'border-transparent');
+        header.classList.add(
+          'bg-surface/95',
+          'backdrop-blur-md',
+          'border-secondary/10',
+          'dark:bg-inverse-surface/95',
+          'dark:border-outline-variant/10'
+        );
+      } else {
+        header.classList.add('bg-transparent', 'border-transparent');
+        header.classList.remove(
+          'bg-surface/95',
+          'backdrop-blur-md',
+          'border-secondary/10',
+          'dark:bg-inverse-surface/95',
+          'dark:border-outline-variant/10'
+        );
+      }
+    }
+
+    // Toggle burger icon color: white on dark hero, dark on scrolled header
+    if (mobileBtn) {
+      if (isActive) {
+        mobileBtn.classList.remove('text-white');
+        mobileBtn.classList.add('text-on-background');
+      } else {
+        mobileBtn.classList.remove('text-on-background');
+        mobileBtn.classList.add('text-white');
+      }
+    }
+  };
+
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      const menuIcon = btn.querySelector('.menu-icon');
+      const closeIcon = btn.querySelector('.close-icon');
+      if (menuIcon && closeIcon) {
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      }
+      updateHeaderBg();
+    });
+
+    // Close menu when clicking link
+    const links = menu.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        const menuIcon = btn.querySelector('.menu-icon');
+        const closeIcon = btn.querySelector('.close-icon');
+        if (menuIcon && closeIcon) {
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+        updateHeaderBg();
+      });
+    });
+  }
+
+  window.addEventListener('scroll', updateHeaderBg);
+  updateHeaderBg(); // Run initial state check
+</script>
