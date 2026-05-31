@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { AlertTriangle, Home } from '@lucide/astro';
+---
+
+<Layout title="404 - Page Not Found / الصفحة غير موجودة / Page Non Trouvée" description="The page you are looking for does not exist. Return to Atlas Electricity homepage.">
+	<Header />
+	<main class="min-h-screen pt-32 pb-20 bg-on-background text-on-primary relative overflow-hidden flex items-center justify-center">
+		<!-- Blueprint and Radial Glow Background -->
+		<div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--color-primary)_0%,_transparent_65%)] pointer-events-none"></div>
+		<div class="absolute inset-0 z-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+		
+		<div class="container mx-auto max-w-2xl px-gutter relative z-10 text-center w-full reveal-scale active">
+			<!-- Visual Icon Warning -->
+			<div class="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full text-primary mb-6 animate-pulse">
+				<AlertTriangle class="w-10 h-10" />
+			</div>
+			
+			<!-- Giant Glowing 404 Title -->
+			<h1 class="font-display-lg text-7xl md:text-8xl font-black text-primary tracking-widest mb-4 drop-shadow-[0_0_30px_rgba(186,0,19,0.3)] select-none">
+				404
+			</h1>
+			
+			<div class="w-24 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
+			
+			<!-- Tri-lingual 404 Messages -->
+			<div class="space-y-6 mb-12">
+				<!-- Arabic -->
+				<div dir="rtl" class="border-b border-surface/10 pb-4">
+					<h2 class="font-headline-md text-xl md:text-2xl text-on-primary font-bold mb-1">الصفحة غير موجودة</h2>
+					<p class="font-body-md text-surface-variant opacity-80">عذراً، الصفحة التي تبحث عنها قد تم نقلها أو أنها غير موجودة.</p>
+				</div>
+				
+				<!-- English -->
+				<div class="border-b border-surface/10 pb-4">
+					<h2 class="font-headline-md text-xl md:text-2xl text-on-primary font-bold mb-1">Page Not Found</h2>
+					<p class="font-body-md text-surface-variant opacity-80">Oops! The page you are looking for has been moved or does not exist.</p>
+				</div>
+				
+				<!-- French -->
+				<div class="pb-4">
+					<h2 class="font-headline-md text-xl md:text-2xl text-on-primary font-bold mb-1">Page Non Trouvée</h2>
+					<p class="font-body-md text-surface-variant opacity-80">Oups ! La page que vous recherchez a été déplacée ou n'existe pas.</p>
+				</div>
+			</div>
+			
+			<!-- Tri-lingual Home CTA Buttons -->
+			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+				<a href="/" class="w-full sm:w-auto inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-bold text-label-bold hover:-translate-y-0.5 transition-all shadow-[0_4px_15px_rgba(186,0,19,0.2)] hover:shadow-[0_8px_25px_rgba(186,0,19,0.4)]" dir="rtl">
+					<Home class="w-4 h-4 me-2" />
+					الرئيسية (العربية)
+				</a>
+				
+				<a href="/en/" class="w-full sm:w-auto inline-flex items-center justify-center bg-surface/20 text-on-primary border border-surface/30 px-6 py-3 rounded-full font-label-bold text-label-bold hover:bg-surface/30 hover:-translate-y-0.5 transition-all">
+					<Home class="w-4 h-4 mr-2" />
+					Home (English)
+				</a>
+				
+				<a href="/fr/" class="w-full sm:w-auto inline-flex items-center justify-center bg-surface/20 text-on-primary border border-surface/30 px-6 py-3 rounded-full font-label-bold text-label-bold hover:bg-surface/30 hover:-translate-y-0.5 transition-all">
+					<Home class="w-4 h-4 mr-2" />
+					Accueil (Français)
+				</a>
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>
