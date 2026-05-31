@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://atlas-electricity.com
+Host: https://atlas-electricity.vercel.app
