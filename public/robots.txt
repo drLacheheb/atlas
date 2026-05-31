@@ -4,3 +4,6 @@ Allow: /
 
 # Host
 Host: https://atlas-electricity.vercel.app
+
+# Sitemap
+Sitemap: https://atlas-electricity.vercel.app/sitemap-index.xml
