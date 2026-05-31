@@ -12,7 +12,7 @@ import { AlertTriangle, Home } from '@lucide/astro';
 		<div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--color-primary)_0%,_transparent_65%)] pointer-events-none"></div>
 		<div class="absolute inset-0 z-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
 		
-		<div class="container mx-auto max-w-2xl px-gutter relative z-10 text-center w-full reveal-scale active">
+		<div id="404-container" class="container mx-auto max-w-2xl px-gutter relative z-10 text-center w-full reveal-scale active">
 			<!-- Visual Icon Warning -->
 			<div class="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full text-primary mb-6 animate-pulse">
 				<AlertTriangle class="w-10 h-10" />
@@ -25,45 +25,86 @@ import { AlertTriangle, Home } from '@lucide/astro';
 			
 			<div class="w-24 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
 			
-			<!-- Tri-lingual 404 Messages -->
-			<div class="space-y-6 mb-12">
-				<!-- Arabic -->
-				<div dir="rtl" class="border-b border-surface/10 pb-4">
-					<h2 class="font-headline-md text-xl md:text-2xl text-on-primary font-bold mb-1">الصفحة غير موجودة</h2>
-					<p class="font-body-md text-surface-variant opacity-80">عذراً، الصفحة التي تبحث عنها قد تم نقلها أو أنها غير موجودة.</p>
-				</div>
-				
-				<!-- English -->
-				<div class="border-b border-surface/10 pb-4">
-					<h2 class="font-headline-md text-xl md:text-2xl text-on-primary font-bold mb-1">Page Not Found</h2>
-					<p class="font-body-md text-surface-variant opacity-80">Oops! The page you are looking for has been moved or does not exist.</p>
-				</div>
-				
-				<!-- French -->
-				<div class="pb-4">
-					<h2 class="font-headline-md text-xl md:text-2xl text-on-primary font-bold mb-1">Page Non Trouvée</h2>
-					<p class="font-body-md text-surface-variant opacity-80">Oups ! La page que vous recherchez a été déplacée ou n'existe pas.</p>
+			<!-- Arabic Block (Hidden by default, shown if path is root) -->
+			<div id="404-ar" class="hidden">
+				<div dir="rtl" class="pb-8">
+					<h2 class="font-headline-lg text-3xl md:text-4xl text-on-primary font-bold mb-3">الصفحة غير موجودة</h2>
+					<p class="font-body-lg text-surface-variant max-w-md mx-auto opacity-80 mb-8 leading-relaxed">عذراً، الصفحة التي تبحث عنها قد تم نقلها أو أنها غير موجودة.</p>
+					
+					<a href="/" class="inline-flex items-center justify-center bg-primary text-on-primary px-8 py-3.5 rounded-full font-label-bold text-label-bold hover:-translate-y-0.5 transition-all shadow-[0_4px_15px_rgba(186,0,19,0.2)] hover:shadow-[0_8px_25px_rgba(186,0,19,0.4)]">
+						<Home class="w-4 h-4 ms-2" />
+						العودة للرئيسية
+					</a>
 				</div>
 			</div>
 			
-			<!-- Tri-lingual Home CTA Buttons -->
-			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-				<a href="/" class="w-full sm:w-auto inline-flex items-center justify-center bg-primary text-on-primary px-6 py-3 rounded-full font-label-bold text-label-bold hover:-translate-y-0.5 transition-all shadow-[0_4px_15px_rgba(186,0,19,0.2)] hover:shadow-[0_8px_25px_rgba(186,0,19,0.4)]" dir="rtl">
-					<Home class="w-4 h-4 me-2" />
-					الرئيسية (العربية)
-				</a>
-				
-				<a href="/en/" class="w-full sm:w-auto inline-flex items-center justify-center bg-surface/20 text-on-primary border border-surface/30 px-6 py-3 rounded-full font-label-bold text-label-bold hover:bg-surface/30 hover:-translate-y-0.5 transition-all">
-					<Home class="w-4 h-4 mr-2" />
-					Home (English)
-				</a>
-				
-				<a href="/fr/" class="w-full sm:w-auto inline-flex items-center justify-center bg-surface/20 text-on-primary border border-surface/30 px-6 py-3 rounded-full font-label-bold text-label-bold hover:bg-surface/30 hover:-translate-y-0.5 transition-all">
-					<Home class="w-4 h-4 mr-2" />
-					Accueil (Français)
-				</a>
+			<!-- English Block (Hidden by default, shown if path starts with /en) -->
+			<div id="404-en" class="hidden">
+				<div class="pb-8">
+					<h2 class="font-headline-lg text-3xl md:text-4xl text-on-primary font-bold mb-3">Page Not Found</h2>
+					<p class="font-body-lg text-surface-variant max-w-md mx-auto opacity-80 mb-8 leading-relaxed">Oops! The page you are looking for has been moved or does not exist.</p>
+					
+					<a href="/en/" class="inline-flex items-center justify-center bg-primary text-on-primary px-8 py-3.5 rounded-full font-label-bold text-label-bold hover:-translate-y-0.5 transition-all shadow-[0_4px_15px_rgba(186,0,19,0.2)] hover:shadow-[0_8px_25px_rgba(186,0,19,0.4)]">
+						<Home class="w-4 h-4 mr-2" />
+						Return Home
+					</a>
+				</div>
+			</div>
+			
+			<!-- French Block (Hidden by default, shown if path starts with /fr) -->
+			<div id="404-fr" class="hidden">
+				<div class="pb-8">
+					<h2 class="font-headline-lg text-3xl md:text-4xl text-on-primary font-bold mb-3">Page Non Trouvée</h2>
+					<p class="font-body-lg text-surface-variant max-w-md mx-auto opacity-80 mb-8 leading-relaxed">Oups ! La page que vous recherchez a été déplacée ou n'existe pas.</p>
+					
+					<a href="/fr/" class="inline-flex items-center justify-center bg-primary text-on-primary px-8 py-3.5 rounded-full font-label-bold text-label-bold hover:-translate-y-0.5 transition-all shadow-[0_4px_15px_rgba(186,0,19,0.2)] hover:shadow-[0_8px_25px_rgba(186,0,19,0.4)]">
+						<Home class="w-4 h-4 mr-2" />
+						Retourner à l'Accueil
+					</a>
+				</div>
 			</div>
 		</div>
 	</main>
 	<Footer />
 </Layout>
+
+<script>
+	const resolve404Localization = () => {
+		const path = window.location.pathname;
+		let activeLang = 'ar'; // Default to Arabic
+
+		if (path.startsWith('/en/') || path === '/en') {
+			activeLang = 'en';
+		} else if (path.startsWith('/fr/') || path === '/fr') {
+			activeLang = 'fr';
+		}
+
+		// Hide all blocks first to be safe
+		['ar', 'en', 'fr'].forEach(lang => {
+			const el = document.getElementById(`404-${lang}`);
+			if (el) el.classList.add('hidden');
+		});
+
+		// Unhide the appropriate block
+		const activeEl = document.getElementById(`404-${activeLang}`);
+		const container = document.getElementById('404-container');
+
+		if (activeEl) {
+			activeEl.classList.remove('hidden');
+		}
+
+		if (container) {
+			if (activeLang === 'ar') {
+				container.setAttribute('dir', 'rtl');
+			} else {
+				container.setAttribute('dir', 'ltr');
+			}
+		}
+	};
+
+	// Run on load
+	resolve404Localization();
+	
+	// Support Astro View Transitions
+	document.addEventListener('astro:page-load', resolve404Localization);
+</script>
