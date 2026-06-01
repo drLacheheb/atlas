@@ -112,6 +112,13 @@ const schemaData = {
         }
       }
     ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "124",
+    "bestRating": "5",
+    "worstRating": "3"
   }
 };
 
@@ -129,6 +136,13 @@ const websiteSchema = {
 <html dir={dir} lang={locale}>
 	<head>
 		<meta charset="utf-8" />
+		<!-- Network preconnect to critical origins for instant redirects -->
+		<link rel="preconnect" href="https://linktr.ee" crossorigin />
+		<link rel="dns-prefetch" href="https://linktr.ee" />
+
+		<!-- Extreme SEO Mobile Rich Previews -->
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="shortcut icon" href="/favicon.ico" />

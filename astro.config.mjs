@@ -7,6 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://atlas-electricity.vercel.app',
+  prefetch: true,
   integrations: [sitemap()],
   i18n: {
     defaultLocale: 'ar',
