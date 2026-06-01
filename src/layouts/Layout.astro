@@ -5,6 +5,7 @@ import { useTranslations } from '../i18n/translations';
 interface Props {
 	title?: string;
 	description?: string;
+	robots?: string;
 }
 
 const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'fr' ? 'fr' : 'ar');
@@ -20,7 +21,8 @@ const defaultDescription = t('hero.desc');
 
 const { 
 	title = defaultTitle,
-	description = defaultDescription
+	description = defaultDescription,
+	robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 } = Astro.props;
 
 // Dynamic hreflang link generation for Multilingual SEO
@@ -198,7 +200,7 @@ const breadcrumbSchema = {
 		<link rel="dns-prefetch" href="https://linktr.ee" />
 
 		<!-- Extreme SEO Mobile Rich Previews -->
-		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<meta name="robots" content={robots} />
 
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
