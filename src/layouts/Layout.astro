@@ -200,6 +200,23 @@ const breadcrumbSchema = {
 <html dir={dir} lang={locale}>
 	<head>
 		<meta charset="utf-8" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-XKVLJ7V279"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-XKVLJ7V279');
+
+			// Astro View Transitions Compatibility
+			document.addEventListener('astro:page-load', () => {
+				gtag('config', 'G-XKVLJ7V279', {
+					page_path: window.location.pathname,
+					page_title: document.title
+				});
+			});
+		</script>
 		<!-- Natural language meta tag for international indexers -->
 		<meta http-equiv="content-language" content={locale} />
 		<!-- Network preconnect to critical origins for instant redirects -->
