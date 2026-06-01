@@ -55,6 +55,15 @@ const schemaData = {
     "closes": "23:59"
   }
 };
+
+// WebSite Schema for Google Site Name representation
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": locale === 'ar' ? "أطلس للكهرباء" : (locale === 'fr' ? "Atlas Électricité" : "Atlas Electricity"),
+  "alternateName": ["أطلس", "Atlas", "Atlas Electricity", "Atlas Électricité"],
+  "url": "https://atlas-electricity.vercel.app/"
+};
 ---
 
 <!DOCTYPE html>
@@ -93,6 +102,8 @@ const schemaData = {
 
 		<!-- Local Business Structured Data -->
 		<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+		<!-- WebSite Structured Data (Site Name) -->
+		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 	</head>
 	<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
 		<slot />
