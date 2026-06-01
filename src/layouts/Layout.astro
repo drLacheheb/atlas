@@ -151,6 +151,42 @@ const organizationSchema = {
     "availableLanguage": ["Arabic", "English", "French"]
   }
 };
+
+// BreadcrumbList Structured Data for Google search breadcrumbs
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": locale === 'ar' ? "الرئيسية" : (locale === 'fr' ? "Accueil" : "Home"),
+    "item": new URL(locale === 'ar' ? '/' : `/${locale}/`, Astro.url.origin).toString()
+  }
+];
+
+if (cleanPath !== '/') {
+  let pageTitle = cleanPath.replace(/^\/|\/$/g, ''); // strip leading/trailing slashes
+  if (pageTitle.toLowerCase() === 'faq') {
+    pageTitle = 'FAQ';
+  } else if (pageTitle.toLowerCase() === 'privacy') {
+    pageTitle = locale === 'ar' ? 'سياسة الخصوصية' : (locale === 'fr' ? 'Politique de Confidentialité' : 'Privacy Policy');
+  } else if (pageTitle.toLowerCase() === 'terms') {
+    pageTitle = locale === 'ar' ? 'شروط الخدمة' : (locale === 'fr' ? "Conditions d'Utilisation" : 'Terms of Service');
+  } else {
+    pageTitle = pageTitle.charAt(0).toUpperCase() + pageTitle.slice(1);
+  }
+
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": 2,
+    "name": pageTitle,
+    "item": Astro.url.href
+  });
+}
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems
+};
 ---
 
 <!DOCTYPE html>
@@ -170,6 +206,8 @@ const organizationSchema = {
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<meta name="apple-mobile-web-app-title" content="Atlas" />
 		<link rel="manifest" href="/site.webmanifest" />
+		<!-- Theme color coloring mobile browser bar -->
+		<meta name="theme-color" content="#ba0013" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="google-site-verification" content="a5eR51L-fXBXHlPqe5TgDE-f9ueH0133Gwxoo8_ve9U" />
@@ -181,6 +219,9 @@ const organizationSchema = {
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={new URL('/og-image.png', Astro.url.href).toString()} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:type" content="image/png" />
 		<meta property="og:locale" content={locale === 'ar' ? 'ar_DZ' : (locale === 'fr' ? 'fr_FR' : 'en_US')} />
 		<meta property="og:site_name" content={locale === 'ar' ? 'أطلس للكهرباء' : (locale === 'fr' ? 'Atlas Électricité' : 'Atlas Electricity')} />
 
@@ -207,6 +248,8 @@ const organizationSchema = {
 		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 		<!-- Organization Structured Data (Knowledge Graph) -->
 		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+		<!-- BreadcrumbList Structured Data (Search Navigation Paths) -->
+		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 	</head>
 	<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
 		<slot />
