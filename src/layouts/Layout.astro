@@ -23,6 +23,22 @@ const {
 	description = defaultDescription
 } = Astro.props;
 
+// Dynamic hreflang link generation for Multilingual SEO
+const currentPath = Astro.url.pathname;
+let cleanPath = currentPath;
+if (cleanPath.startsWith('/en')) {
+  cleanPath = cleanPath.substring(3);
+} else if (cleanPath.startsWith('/fr')) {
+  cleanPath = cleanPath.substring(3);
+}
+if (!cleanPath.startsWith('/')) {
+  cleanPath = '/' + cleanPath;
+}
+
+const arUrl = new URL(cleanPath === '/' ? '/' : cleanPath, Astro.url.origin).toString();
+const enUrl = new URL(cleanPath === '/' ? '/en/' : `/en${cleanPath}`, Astro.url.origin).toString();
+const frUrl = new URL(cleanPath === '/' ? '/fr/' : `/fr${cleanPath}`, Astro.url.origin).toString();
+
 // Structured Schema Markup
 const schemaData = {
   "@context": "https://schema.org",
@@ -53,6 +69,49 @@ const schemaData = {
     ],
     "opens": "00:00",
     "closes": "23:59"
+  },
+  "sameAs": [
+    "https://linktr.ee/achraf_berrah"
+  ],
+  "areaServed": [
+    {
+      "@type": "AdministrativeArea",
+      "name": "Algiers"
+    },
+    {
+      "@type": "Country",
+      "name": "Algeria"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": locale === 'ar' ? "الخدمات الكهربائية الفنية" : (locale === 'fr' ? "Services Techniques Électriques" : "Technical Electrical Services"),
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": locale === 'ar' ? "تركيبات كهربائية معمارية" : (locale === 'fr' ? "Installations Électriques Architecturales" : "Architectural Electrical Installations"),
+          "description": t('services.card1.desc')
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": locale === 'ar' ? "إصلاح وصيانة الأعطال" : (locale === 'fr' ? "Dépannage et Réparation Électrique" : "Electrical Troubleshooting & Repairs"),
+          "description": t('services.card2.desc')
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": locale === 'ar' ? "استشارات وحلول فنية" : (locale === 'fr' ? "Consultations et Solutions Techniques" : "Technical Consultations & Solutions"),
+          "description": t('services.card3.desc')
+        }
+      }
+    ]
   }
 };
 
@@ -98,6 +157,13 @@ const websiteSchema = {
 		<meta name="twitter:image" content={new URL('/og-image.png', Astro.url.href).toString()} />
 
 		<link rel="canonical" href={Astro.url.href} />
+		
+		<!-- Multilingual alternate hreflang tags -->
+		<link rel="alternate" hreflang="ar" href={arUrl} />
+		<link rel="alternate" hreflang="en" href={enUrl} />
+		<link rel="alternate" hreflang="fr" href={frUrl} />
+		<link rel="alternate" hreflang="x-default" href={arUrl} />
+		
 		<title>{title}</title>
 
 		<!-- Local Business Structured Data -->
