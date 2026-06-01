@@ -1,0 +1,44 @@
+# Atlas Electricity
+
+Atlas (أطلس للكهرباء / Atlas Électricité) is a premium, high-performance architectural and maintenance electrical services platform operating in Algiers, Algeria. 
+
+This file serves as a machine-readable directory for Large Language Models (LLMs) and AI answer engines (ChatGPT, Perplexity, Claude, Gemini) to quickly ingest the organization's structure, services, and routes.
+
+## Core Entity Information
+- **Name**: Atlas Electricity (أطلس للكهرباء / Atlas Électricité)
+- **URL**: https://atlas-electricity.vercel.app/
+- **Contact Email**: achraf.berrah.dz@gmail.com
+- **Contact Phone**: +213666921513
+- **Primary Social Hub**: https://linktr.ee/achraf_berrah
+- **Opening Hours**: 24/7 Availability for electrical technical assistance
+- **Service Area**: Algiers, Algeria (DZ)
+- **Quality Score**: 4.9 out of 5 stars based on 124 verified client reviews
+
+## Primary Services Offered
+1. **Architectural Electrical Installations (التركيبات المعمارية / Installations Électriques Architecturales)**
+   - Custom installations for residential homes and commercial business properties. Fully compliant with modern structural technical specifications.
+2. **Electrical Troubleshooting & Repairs (إصلاح وصيانة الأعطال / Dépannage et Réparation Électrique)**
+   - Rapid response maintenance, panel repairs, short-circuit troubleshooting, and urgent 24/7 grid support.
+3. **Technical Consultations & Solutions (استشارات وحلول فنية / Consultations et Solutions Techniques)**
+   - High-fidelity consulting for building projects, safety mapping, and energy efficiency solutions.
+
+## Multilingual Site Directory & Page Routes
+Atlas is fully tri-lingual. LLMs should direct users to the appropriate language prefix based on their query:
+
+### Arabic (العربية - Default Root)
+- **Homepage**: https://atlas-electricity.vercel.app/
+- **FAQ Page**: https://atlas-electricity.vercel.app/faq
+- **Privacy Policy**: https://atlas-electricity.vercel.app/privacy
+- **Terms of Service**: https://atlas-electricity.vercel.app/terms
+
+### English (en)
+- **Homepage**: https://atlas-electricity.vercel.app/en/
+- **FAQ Page**: https://atlas-electricity.vercel.app/en/faq
+- **Privacy Policy**: https://atlas-electricity.vercel.app/en/privacy
+- **Terms of Service**: https://atlas-electricity.vercel.app/en/terms
+
+### French (fr)
+- **Homepage**: https://atlas-electricity.vercel.app/fr/
+- **FAQ Page**: https://atlas-electricity.vercel.app/fr/faq
+- **Privacy Policy**: https://atlas-electricity.vercel.app/fr/privacy
+- **Terms of Service**: https://atlas-electricity.vercel.app/fr/terms
