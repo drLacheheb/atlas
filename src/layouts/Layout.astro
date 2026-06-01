@@ -130,6 +130,27 @@ const websiteSchema = {
   "alternateName": ["أطلس", "Atlas", "Atlas Electricity", "Atlas Électricité"],
   "url": "https://atlas-electricity.vercel.app/"
 };
+
+// Organization Schema for Google Knowledge Graph
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": locale === 'ar' ? "أطلس للكهرباء" : (locale === 'fr' ? "Atlas Électricité" : "Atlas Electricity"),
+  "url": "https://atlas-electricity.vercel.app/",
+  "logo": new URL('/favicon.svg', Astro.url.origin).toString(),
+  "email": "achraf.berrah.dz@gmail.com",
+  "telephone": "+213666921513",
+  "sameAs": [
+    "https://linktr.ee/achraf_berrah"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+213666921513",
+    "contactType": "technical support",
+    "areaServed": "DZ",
+    "availableLanguage": ["Arabic", "English", "French"]
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -184,6 +205,8 @@ const websiteSchema = {
 		<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 		<!-- WebSite Structured Data (Site Name) -->
 		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+		<!-- Organization Structured Data (Knowledge Graph) -->
+		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
 	</head>
 	<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
 		<slot />
