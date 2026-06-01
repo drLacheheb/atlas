@@ -22,6 +22,7 @@ export const ui = {
     'hero.title2': 'تستحقها مشاريعك',
     'hero.desc': 'في شركة أطلس للكهرباء، مهمتنا هي تقديم خدمات كهربائية متميزة تلبي احتياجات القطاعين السكني والتجاري. نولي أهمية قصوى للجودة والموثوقية ورضا العملاء.',
     'hero.cta': 'احجز الآن',
+    'hero.logoAlt': 'شعار شركة أطلس للكهرباء',
 
     // Benefits
     'benefits.title': 'الفوائد الرئيسية',
@@ -92,6 +93,7 @@ export const ui = {
     'hero.title2': 'Your Projects Deserve',
     'hero.desc': 'At Atlas Electricity, our mission is to deliver outstanding electrical services that meet the needs of both residential and commercial sectors. We prioritize quality, reliability, and customer satisfaction above all.',
     'hero.cta': 'Book Now',
+    'hero.logoAlt': 'Atlas Electricity brand logo',
 
     // Benefits
     'benefits.title': 'Key Benefits',
@@ -162,6 +164,7 @@ export const ui = {
     'hero.title2': 'Vos Projets Méritent',
     'hero.desc': "Chez Atlas Électricité, notre mission est de fournir des services électriques exceptionnels qui répondent aux besoins des secteurs résidentiel et commercial. Nous privilégions avant tout la qualité, la fiabilité et la satisfaction client.",
     'hero.cta': 'Réserver Maintenant',
+    'hero.logoAlt': "Logo de la marque Atlas Électricité",
 
     // Benefits
     'benefits.title': 'Avantages Clés',
