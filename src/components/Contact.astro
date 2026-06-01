@@ -8,7 +8,7 @@ const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'f
 const t = useTranslations(locale);
 
 // Optimize background image
-const optimizedBg = await getImage({ src: connectWithUsBg, format: 'webp', width: 1920 });
+const optimizedBg = await getImage({ src: connectWithUsBg, format: 'webp', width: 1024, quality: 50 });
 ---
 <!-- Contact Section -->
 <section class="text-on-surface bg-on-background relative overflow-hidden min-h-screen flex items-center py-20" id="contact">

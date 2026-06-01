@@ -8,7 +8,7 @@ const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'f
 const t = useTranslations(locale);
 
 // Optimize background image
-const optimizedBg = await getImage({ src: keyBenefitsBg, format: 'webp', width: 1920 });
+const optimizedBg = await getImage({ src: keyBenefitsBg, format: 'webp', width: 1024, quality: 50 });
 ---
 <!-- Core Benefits Section -->
 <section class="min-h-screen flex items-center py-20 bg-surface relative overflow-hidden bg-grid-pattern" id="benefits">

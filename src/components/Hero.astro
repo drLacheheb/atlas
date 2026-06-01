@@ -10,7 +10,7 @@ const t = useTranslations(locale);
 const titleSize = locale === 'ar' ? 'text-[clamp(1.875rem,3vw+1.5rem,5rem)]' : 'text-[clamp(1.875rem,2.5vw+1.25rem,3.75rem)]';
 
 // Optimize background image
-const optimizedHeroBg = await getImage({ src: heroBg, format: 'webp', width: 1920 });
+const optimizedHeroBg = await getImage({ src: heroBg, format: 'webp', width: 1280, quality: 60 });
 ---
 <!-- Hero Section -->
 <section class="relative min-h-screen flex items-center py-16 md:py-0 bg-on-background text-on-primary overflow-hidden">
