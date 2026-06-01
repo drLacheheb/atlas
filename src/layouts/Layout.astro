@@ -57,6 +57,11 @@ const schemaData = {
     "addressCountry": "DZ",
     "addressRegion": "Algiers"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "36.7528",
+    "longitude": "3.0420"
+  },
   "priceRange": "$$",
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
@@ -195,6 +200,8 @@ const breadcrumbSchema = {
 <html dir={dir} lang={locale}>
 	<head>
 		<meta charset="utf-8" />
+		<!-- Natural language meta tag for international indexers -->
+		<meta http-equiv="content-language" content={locale} />
 		<!-- Network preconnect to critical origins for instant redirects -->
 		<link rel="preconnect" href="https://linktr.ee" crossorigin />
 		<link rel="dns-prefetch" href="https://linktr.ee" />
@@ -252,6 +259,7 @@ const breadcrumbSchema = {
 		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
 		<!-- BreadcrumbList Structured Data (Search Navigation Paths) -->
 		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+		<slot name="head" />
 	</head>
 	<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
 		<slot />

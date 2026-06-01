@@ -26,9 +26,23 @@ const faqs = [
 		a: "We adopt a transparent and competitive pricing system. An initial cost estimate is provided based on the nature of the fault or installations required. Before starting any work, we share the final price with you to avoid any hidden costs."
 	}
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 
 <Layout title="Frequently Asked Questions - FAQ - Atlas Electricity" description="Frequently asked questions about Atlas architectural electricity services, residential, and commercial maintenance.">
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
 	<Header />
 	<main class="pt-32 pb-20 min-h-screen bg-on-background text-on-primary relative overflow-hidden">
 		<div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary via-on-background to-on-background"></div>
