@@ -76,7 +76,15 @@ export const ui = {
     'footer.legal.item1': 'سياسة الخصوصية',
     'footer.legal.item2': 'شروط الخدمة',
     'footer.legal.item3': 'الأسئلة الشائعة',
-    'footer.copyright': '© 2024 أطلس للكهرباء. جميع الحقوق محفوظة.'
+    'footer.copyright': '© 2024 أطلس للكهرباء. جميع الحقوق محفوظة.',
+
+    // Vision
+    'vision.title': 'رؤيتنا المستقبيلة',
+    'vision.desc': 'نحن نتطلع إلى تصميم وتجهيز شبكات المستقبل الكهربائية بحلول هندسية مبتكرة ومستدامة.',
+    'vision.card1.title': 'التميز الهندسي',
+    'vision.card1.desc': 'تركيبات وتصاميم فنية متقدمة تضمن الأمان والكفاءة المطلقة للمباني السكنية والمشاريع التجارية.',
+    'vision.card2.title': 'حلول الطاقة الذكية',
+    'vision.card2.desc': 'دمج التقنيات الذكية وإدارة الأحمال لتحسين استهلاك الطاقة وتوفير بيئة عمل مستدامة.'
   },
   en: {
     // Header
@@ -147,7 +155,15 @@ export const ui = {
     'footer.legal.item1': 'Privacy Policy',
     'footer.legal.item2': 'Terms of Service',
     'footer.legal.item3': 'FAQ',
-    'footer.copyright': '© 2024 Atlas Electricity. All rights reserved.'
+    'footer.copyright': '© 2024 Atlas Electricity. All rights reserved.',
+
+    // Vision
+    'vision.title': 'Our Vision',
+    'vision.desc': 'We look forward to designing and equipping the electrical grids of the future with innovative, sustainable engineering solutions.',
+    'vision.card1.title': 'Engineering Excellence',
+    'vision.card1.desc': 'Advanced technical designs and installations ensuring absolute safety and efficiency for residential buildings and commercial projects.',
+    'vision.card2.title': 'Smart Energy Solutions',
+    'vision.card2.desc': 'Integrating smart technologies and load management to optimize energy consumption and deliver a sustainable environment.'
   },
   fr: {
     // Header
@@ -218,7 +234,15 @@ export const ui = {
     'footer.legal.item1': 'Politique de Confidentialité',
     'footer.legal.item2': "Conditions d'Utilisation",
     'footer.legal.item3': 'FAQ',
-    'footer.copyright': '© 2024 Atlas Électricité. Tous droits réservés.'
+    'footer.copyright': '© 2024 Atlas Électricité. Tous droits réservés.',
+
+    // Vision
+    'vision.title': 'Notre Vision',
+    'vision.desc': 'Nous aspirons à concevoir et équiper les réseaux électriques de demain avec des solutions d’ingénierie innovantes et durables.',
+    'vision.card1.title': 'Excellence en Ingénierie',
+    'vision.card1.desc': 'Conceptions et installations techniques avancées garantissant une sécurité absolue et une efficacité pour les bâtiments résidentiels et projets commerciaux.',
+    'vision.card2.title': 'Solutions Énergétiques Intelligentes',
+    'vision.card2.desc': 'Intégration de technologies intelligentes et gestion des charges pour optimiser la consommation d’énergie et offrir un environnement durable.'
   }
 } as const;
 

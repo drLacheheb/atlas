@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import vision3 from '../assets/vision_3_1_1.png';
+import vision4 from '../assets/vision_4_1_1.png';
+import { useTranslations } from '../i18n/translations';
+
+const locale = Astro.currentLocale === 'en' ? 'en' : (Astro.currentLocale === 'fr' ? 'fr' : 'ar');
+const t = useTranslations(locale);
+const dir = locale === 'ar' ? 'rtl' : 'ltr';
+---
+
+<!-- Vision Showcase Section -->
+<section class="min-h-[100dvh] flex flex-col justify-center py-20 bg-surface relative overflow-hidden bg-grid-pattern md:hidden" id="vision">
+  <!-- Radial light blend to matching active theme -->
+  <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--color-surface-container-high)_0%,_transparent_75%)] opacity-40 pointer-events-none"></div>
+
+  <div class="container mx-auto max-w-container-max px-gutter relative z-10">
+    <!-- Section Heading -->
+    <div class="mb-16 text-center max-w-3xl mx-auto reveal">
+      <h2 class="font-headline-lg text-3xl md:text-headline-lg mb-4 text-on-background">{t('vision.title')}</h2>
+      <div class="w-24 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
+      <p class="font-body-lg text-body-lg text-secondary">
+        {t('vision.desc')}
+      </p>
+    </div>
+
+    <!-- MOBILE VIEW: Auto-scrolling Infinite Marquee (md:hidden) -->
+    <div class="block md:hidden w-full overflow-hidden py-4 relative select-none reveal" dir="ltr">
+      <!-- Gradient Fades to blend edges nicely -->
+      <div class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none"></div>
+
+      <div class="flex gap-4 animate-marquee whitespace-nowrap">
+        <!-- Card 1 -->
+        <div class="inline-block w-[280px] flex-shrink-0 bg-surface-container-lowest border border-surface-container-highest rounded-2xl p-4 shadow-sm whitespace-normal">
+          <div class="overflow-hidden rounded-xl aspect-[4/3] mb-4 bg-surface-container">
+            <Image src={vision3} alt={t('vision.card1.title')} class="w-full h-full object-cover" width={480} quality={60} />
+          </div>
+          <h4 class="font-headline-md text-base font-bold text-on-background mb-2">{t('vision.card1.title')}</h4>
+          <p class="font-body-md text-xs text-secondary leading-relaxed line-clamp-3">{t('vision.card1.desc')}</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="inline-block w-[280px] flex-shrink-0 bg-surface-container-lowest border border-surface-container-highest rounded-2xl p-4 shadow-sm whitespace-normal">
+          <div class="overflow-hidden rounded-xl aspect-[4/3] mb-4 bg-surface-container">
+            <Image src={vision4} alt={t('vision.card2.title')} class="w-full h-full object-cover" width={480} quality={60} />
+          </div>
+          <h4 class="font-headline-md text-base font-bold text-on-background mb-2">{t('vision.card2.title')}</h4>
+          <p class="font-body-md text-xs text-secondary leading-relaxed line-clamp-3">{t('vision.card2.desc')}</p>
+        </div>
+
+        <!-- Duplicate Card 1 (for infinite loop) -->
+        <div class="inline-block w-[280px] flex-shrink-0 bg-surface-container-lowest border border-surface-container-highest rounded-2xl p-4 shadow-sm whitespace-normal">
+          <div class="overflow-hidden rounded-xl aspect-[4/3] mb-4 bg-surface-container">
+            <Image src={vision3} alt={t('vision.card1.title')} class="w-full h-full object-cover" width={480} quality={60} />
+          </div>
+          <h4 class="font-headline-md text-base font-bold text-on-background mb-2">{t('vision.card1.title')}</h4>
+          <p class="font-body-md text-xs text-secondary leading-relaxed line-clamp-3">{t('vision.card1.desc')}</p>
+        </div>
+
+        <!-- Duplicate Card 2 (for infinite loop) -->
+        <div class="inline-block w-[280px] flex-shrink-0 bg-surface-container-lowest border border-surface-container-highest rounded-2xl p-4 shadow-sm whitespace-normal">
+          <div class="overflow-hidden rounded-xl aspect-[4/3] mb-4 bg-surface-container">
+            <Image src={vision4} alt={t('vision.card2.title')} class="w-full h-full object-cover" width={480} quality={60} />
+          </div>
+          <h4 class="font-headline-md text-base font-bold text-on-background mb-2">{t('vision.card2.title')}</h4>
+          <p class="font-body-md text-xs text-secondary leading-relaxed line-clamp-3">{t('vision.card2.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  /* Make sure scrolling interactions are smooth and hardware accelerated */
+  .sticky {
+    will-change: transform, top;
+  }
+</style>

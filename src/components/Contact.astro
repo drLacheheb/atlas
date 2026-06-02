@@ -11,7 +11,7 @@ const t = useTranslations(locale);
 const optimizedBg = await getImage({ src: connectWithUsBg, format: 'webp', width: 1024, quality: 50 });
 ---
 <!-- Contact Section -->
-<section class="text-on-surface bg-on-background relative overflow-hidden min-h-screen flex items-center py-20" id="contact">
+<section class="text-on-surface bg-on-background relative overflow-hidden min-h-[100dvh] flex items-center py-20" id="contact">
   <div class="absolute inset-0 z-0 opacity-15 bg-cover bg-center bg-no-repeat pointer-events-none" style={`background-image: url('${optimizedBg.src}');`}></div>
   <div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary via-on-background to-on-background"></div>
   <div class="container mx-auto max-w-container-max px-gutter relative z-10 w-full">
